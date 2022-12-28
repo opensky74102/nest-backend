@@ -1,18 +1,30 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete,UsePipes, ValidationPipe} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, Inject } from '@nestjs/common';
 import { ContactService } from './contact.service';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
+import { MailService } from '../mail/mail.service';
 
 @Controller('api/contact')
 export class ContactController {
-  constructor(private readonly contactService: ContactService) {}
-
+  constructor(
+    private readonly contactService: ContactService,
+    private readonly mailService: MailService,
+  ) { }
   @Post()
-  @UsePipes(ValidationPipe)
+  // @UsePipes(ValidationPipe)
   create(@Body() createContactDto: CreateContactDto) {
-    console.log(createContactDto)
     this.contactService.create(createContactDto);
-    return true;
+    let to = createContactDto.email;
+    let from = "opensky74102@gmail.com";
+    let subject = "hellow opensky";
+    let mail = "what are you doing wno";
+    console.log(to, from, subject, mail)
+    this.mailService.sendMail(to, from, subject, mail).then((res) => {
+      console.log(res);
+      return true;
+    }).catch((e) => {
+      console.log(e)
+    });
   }
 
   @Get()

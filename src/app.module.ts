@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ContactModule } from './contact/contact.module';
 import { ConfigModule, ConfigService  } from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
+import { MailModule } from './mail/mail.module';
 import entities from './typeorm';
 
 @Module({
@@ -24,7 +25,7 @@ import entities from './typeorm';
       inject: [ConfigService],
     }),
     ContactModule,
-
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

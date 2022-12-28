@@ -1,10 +1,8 @@
 import { Module, Global } from '@nestjs/common';
 import { MailController } from './mail.controller';
 import { MailerModule } from '@nestjs-modules/mailer/dist';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
-import { join } from 'path';
 import { MailService } from './mail.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 
 @Global()
 @Module({
@@ -22,16 +20,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           tls: { rejectUnauthorized: false },
           default: {
             from: `noreply`,
-          },
-        },
-        defaults: {
-          from: `"No Reply" <${config.get('MAIL_FROM')}>`,
-        },
-        template: {
-          dir: join(__dirname, 'templates'),
-          adapter: new HandlebarsAdapter(),
-          options: {
-            strict: true,
           },
         },
       }),

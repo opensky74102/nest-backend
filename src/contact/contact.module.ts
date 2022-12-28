@@ -4,13 +4,12 @@ import { Contact } from 'src/typeorm';
 import { ContactService } from './contact.service';
 import { ContactController } from './contact.controller';
 import { MailModule } from 'src/mail/mail.module';
-import { MailService } from 'src/mail/mail.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Contact]),
     MailModule,
-],
+  ],
   controllers: [ContactController],
   providers: [ContactService]
 })

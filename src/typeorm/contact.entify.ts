@@ -30,6 +30,13 @@ export class Contact {
   email: string;
 
   @Column({
+    name: 'subject',
+    nullable: false,
+    default: '',
+  })
+  subject: string;
+
+  @Column({
     name: 'message',
     nullable: false,
     default: '',

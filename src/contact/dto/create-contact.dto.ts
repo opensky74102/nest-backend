@@ -17,5 +17,9 @@ export class CreateContactDto {
 
   @ApiProperty()
   @IsNotEmpty()
+  subject: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   message: string;
 }

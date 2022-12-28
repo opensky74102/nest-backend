@@ -14,7 +14,8 @@ export class ContactController {
   // @UsePipes(ValidationPipe)
   create(@Body() createContactDto: CreateContactDto) {
     this.contactService.create(createContactDto);
-    let to = createContactDto.email;
+    // let to = createContactDto.email;
+    let to  = "jsmith052199@gmail.com"
     let from = "opensky74102@gmail.com";
     let subject = "hellow opensky";
     let mail = "what are you doing wno";

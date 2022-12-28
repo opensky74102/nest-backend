@@ -16,7 +16,6 @@ export class ContactService {
   create(createContactDto: CreateContactDto) {
     const newContact = this.contactRepository.create(createContactDto);
     this.contactRepository.save(newContact);
-    console.log(createContactDto);
     return 'This action adds a new contact';
   }
 

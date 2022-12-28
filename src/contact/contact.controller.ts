@@ -14,13 +14,13 @@ export class ContactController {
   // @UsePipes(ValidationPipe)
   create(@Body() createContactDto: CreateContactDto) {
     this.contactService.create(createContactDto);
-    // let to = createContactDto.email;
-    let to  = "jsmith052199@gmail.com"
-    let from = "opensky74102@gmail.com";
+    let fn = createContactDto.firstname;
+    let ln = createContactDto.lastname;
+    let to = createContactDto.email;
     let subject = "hellow opensky";
-    let mail = "what are you doing wno";
-    console.log(to, from, subject, mail)
-    this.mailService.sendMail(to, from, subject, mail).then((res) => {
+    let mail = "Hi "+createContactDto.firstname + ". Thank you very much for contacting us. ";
+    console.log(to, subject, mail)
+    this.mailService.sendMail(fn, ln,to,subject, mail).then((res) => {
       console.log(res);
       return true;
     }).catch((e) => {

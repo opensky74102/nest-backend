@@ -12,25 +12,34 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     MailerModule.forRootAsync({
       useFactory: async (config: ConfigService) => ({
         transport: {
-          service:config.get("MAIL_SERVICE"),
+          service: config.get("MAIL_SERVICE"),
           host: config.get('MAIL_HOST'),
           secure: false,
           auth: {
             user: config.get("MAIL_USER"),
             pass: config.get("MAIL_PASSWORD"),
           },
-          tls: {rejectUnauthorized: false},
+          tls: { rejectUnauthorized: false },
           default: {
-            from: `"no reply " <${config.get("MAIL_FROM")}>`,
+            from: `noreply`,
           },
-          template: "template Hello Open",
-        }
+        },
+        defaults: {
+          from: `"No Reply" <${config.get('MAIL_FROM')}>`,
+        },
+        template: {
+          dir: join(__dirname, 'templates'),
+          adapter: new HandlebarsAdapter(),
+          options: {
+            strict: true,
+          },
+        },
       }),
       inject: [ConfigService],
     })
   ],
   controllers: [MailController],
   providers: [MailService],
-  exports:[MailService],
+  exports: [MailService],
 })
 export class MailModule { }

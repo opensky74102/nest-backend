@@ -19,6 +19,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
             user: config.get("MAIL_USER"),
             pass: config.get("MAIL_PASSWORD"),
           },
+          tls: {rejectUnauthorized: false},
           default: {
             from: `"no reply " <${config.get("MAIL_FROM")}>`,
           },

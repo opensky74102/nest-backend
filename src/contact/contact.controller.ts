@@ -18,10 +18,10 @@ export class ContactController {
     let fn = createContactDto.firstname;
     let ln = createContactDto.lastname;
     let to = createContactDto.email;
-    let subject = "Algonrich recieved your message";
+    let subject = "Algonrich received your message";
     let mail = "Hi " + createContactDto.firstname + ". Thank you very much for contacting us.";
     console.log(to, subject, mail)
-    this.mailService.sendMail(fn, ln, to, subject, mail);
+    // this.mailService.sendMail(fn, ln, to, subject, mail);
     return true;
   }
 

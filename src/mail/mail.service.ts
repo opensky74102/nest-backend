@@ -10,11 +10,12 @@ export class MailService {
       to: to,
       from: "mail@algonrich.com",
       subject: subject,
-      template: './transactional',
+      template: './received',
       text: mail,
       context: {
         firstname: fname,
         lastname: lname,
+        mail:mail,
       },
     });
   }

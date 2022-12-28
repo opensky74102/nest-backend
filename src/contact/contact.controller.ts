@@ -22,6 +22,7 @@ export class ContactController {
     let mail = "Hi " + createContactDto.firstname + ". Thank you very much for contacting us.";
     console.log(to, subject, mail)
     this.mailService.sendMail(fn, ln, to, subject, mail);
+    return true;
   }
 
   @Get()
